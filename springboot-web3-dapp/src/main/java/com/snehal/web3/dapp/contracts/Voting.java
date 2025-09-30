@@ -1,0 +1,136 @@
+package com.snehal.web3.dapp.contracts;
+
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import org.web3j.abi.TypeReference;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.generated.Uint256;
+import org.web3j.crypto.Credentials;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.RemoteFunctionCall;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.Contract;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
+
+/**
+ * <p>Auto generated code.
+ * <p><strong>Do not modify!</strong>
+ * <p>Please use the <a href="https://docs.web3j.io/command_line.html">web3j command line tools</a>,
+ * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
+ * <a href="https://github.com/LFDT-web3j/web3j/tree/main/codegen">codegen module</a> to update.
+ *
+ * <p>Generated with web3j version 4.14.0.
+ */
+@SuppressWarnings("rawtypes")
+public class Voting extends Contract {
+    public static final String BINARY = "6080604052348015600e575f5ffd5b506102378061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061003f575f3560e01c8063805265e514610043578063b99ef1fa14610068578063fc36e15b14610092575b5f5ffd5b610056610051366004610114565b6100a7565b60405190815260200160405180910390f35b610056610076366004610114565b80516020818301810180515f8252928201919093012091525481565b6100a56100a0366004610114565b6100cd565b005b5f5f826040516100b791906101c7565b9081526020016040518091039020549050919050565b5f816040516100dc91906101c7565b9081526040519081900360200190208054905f6100f8836101dd565b919050555050565b634e487b7160e01b5f52604160045260245ffd5b5f60208284031215610124575f5ffd5b813567ffffffffffffffff81111561013a575f5ffd5b8201601f8101841361014a575f5ffd5b803567ffffffffffffffff81111561016457610164610100565b604051601f8201601f19908116603f0116810167ffffffffffffffff8111828210171561019357610193610100565b6040528181528282016020018610156101aa575f5ffd5b816020840160208301375f91810160200191909152949350505050565b5f82518060208501845e5f920191825250919050565b5f600182016101fa57634e487b7160e01b5f52601160045260245ffd5b506001019056fea2646970667358221220599971fce32b6de63a62dd789450e31b8106ebb5ecdc899ea8960d167126719664736f6c634300081d0033";
+
+    private static String librariesLinkedBinary;
+
+    public static final String FUNC_GETVOTES = "getVotes";
+
+    public static final String FUNC_VOTE = "vote";
+
+    public static final String FUNC_VOTES = "votes";
+
+    @Deprecated
+    protected Voting(String contractAddress, Web3j web3j, Credentials credentials,
+            BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    protected Voting(String contractAddress, Web3j web3j, Credentials credentials,
+            ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    @Deprecated
+    protected Voting(String contractAddress, Web3j web3j, TransactionManager transactionManager,
+            BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    protected Voting(String contractAddress, Web3j web3j, TransactionManager transactionManager,
+            ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public RemoteFunctionCall<BigInteger> getVotes(String option) {
+        final Function function = new Function(FUNC_GETVOTES, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(option)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteFunctionCall<TransactionReceipt> vote(String option) {
+        final Function function = new Function(
+                FUNC_VOTE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(option)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteFunctionCall<BigInteger> votes(String param0) {
+        final Function function = new Function(FUNC_VOTES, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(param0)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    @Deprecated
+    public static Voting load(String contractAddress, Web3j web3j, Credentials credentials,
+            BigInteger gasPrice, BigInteger gasLimit) {
+        return new Voting(contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    @Deprecated
+    public static Voting load(String contractAddress, Web3j web3j,
+            TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        return new Voting(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    public static Voting load(String contractAddress, Web3j web3j, Credentials credentials,
+            ContractGasProvider contractGasProvider) {
+        return new Voting(contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    public static Voting load(String contractAddress, Web3j web3j,
+            TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        return new Voting(contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public static RemoteCall<Voting> deploy(Web3j web3j, Credentials credentials,
+            ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(Voting.class, web3j, credentials, contractGasProvider, getDeploymentBinary(), "");
+    }
+
+    @Deprecated
+    public static RemoteCall<Voting> deploy(Web3j web3j, Credentials credentials,
+            BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(Voting.class, web3j, credentials, gasPrice, gasLimit, getDeploymentBinary(), "");
+    }
+
+    public static RemoteCall<Voting> deploy(Web3j web3j, TransactionManager transactionManager,
+            ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(Voting.class, web3j, transactionManager, contractGasProvider, getDeploymentBinary(), "");
+    }
+
+    @Deprecated
+    public static RemoteCall<Voting> deploy(Web3j web3j, TransactionManager transactionManager,
+            BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(Voting.class, web3j, transactionManager, gasPrice, gasLimit, getDeploymentBinary(), "");
+    }
+
+    private static String getDeploymentBinary() {
+        if (librariesLinkedBinary != null) {
+            return librariesLinkedBinary;
+        } else {
+            return BINARY;
+        }
+    }
+}
